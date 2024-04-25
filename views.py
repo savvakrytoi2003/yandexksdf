@@ -8,9 +8,9 @@ def index():
     return render_template('index.html', title='Главная')
 
 
-@app.route('/projects')
-def projects():
-    return render_template('projects.html', title='Проекты')
+@app.route('/contact_form')
+def contact_form():
+    return render_template('consultation_form.html', title='Получить консультацию')
 
 
 @app.route('/contact')
