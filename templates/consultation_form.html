@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title }}</title>
-    <!-- Подключение стилей -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
     <header>
@@ -13,39 +11,45 @@
         <nav>
             <ul>
                 <li><a href="{{ url_for('index') }}">Главная</a></li>
-                <li><a href="{{ url_for('projects') }}">Проекты</a></li>
+                <li><button onclick="showForm()">Получить консультацию</button></li>
                 <li><a href="{{ url_for('contact') }}">Контакты</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <h2>Форма получения консультации</h2>
-        <form method="POST" action="{{ url_for('submit_consultation') }}">
-            <label for="first_name">Имя:</label><br>
-            <input type="text" id="first_name" name="first_name"><br>
+        <div id="consultationForm" style="display: none;">
+            <h2>Форма получения консультации</h2>
+            <form method="POST" action="{{ url_for('submit_consultation') }}">
+                <label for="first_name">Имя:</label><br>
+                <input type="text" id="first_name" name="first_name"><br>
 
-            <label for="last_name">Фамилия:</label><br>
-            <input type="text" id="last_name" name="last_name"><br>
+                <label for="last_name">Фамилия:</label><br>
+                <input type="text" id="last_name" name="last_name"><br>
 
-            <label for="middle_name">Отчество:</label><br>
-            <input type="text" id="middle_name" name="middle_name"><br>
+                <label for="middle_name">Отчество:</label><br>
+                <input type="text" id="middle_name" name="middle_name"><br>
 
-            <label for="email">Email:</label><br>
-            <input type="email" id="email" name="email"><br>
+                <label for="email">Email:</label><br>
+                <input type="email" id="email" name="email"><br>
 
-            <label for="purpose">Цель консультации:</label><br>
-            <textarea id="purpose" name="purpose" rows="4" cols="50"></textarea><br>
+                <label for="purpose">Цель консультации:</label><br>
+                <textarea id="purpose" name="purpose" rows="4" cols="50"></textarea><br>
 
-            <input type="submit" value="Отправить">
-        </form>
+                <input type="submit" value="Отправить">
+            </form>
+        </div>
     </main>
 
     <footer>
         <p>&copy; 2024 Ваше название</p>
     </footer>
 
-    <!-- Подключение скриптов -->
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script>
+        function showForm() {
+            var form = document.getElementById("consultationForm");
+            form.style.display = "block";
+        }
+    </script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 
 app = Flask(__name__)
 
@@ -27,12 +27,17 @@ def submit_consultation():
     email = request.form.get('email')
     purpose = request.form.get('purpose')
 
-    # Логика обработки данных формы
+    # Логика обработки данных формы (например, сохранение в базу данных)
 
-    # Возвращаем сообщение об успешной отправке консультации
-    return render_template('consultation_success.html', title='Консультация отправлена')
+    # Перенаправление на страницу с сообщением о том, что заявка отправлена
+    return redirect(url_for('consultation_success'))
 
+
+@app.route('/consultation_success')
+def consultation_success():
+    return render_template('consultation_success.html', title='Заявка отправлена')
 
 
 if __name__ == '__main__':
     app.run(debug=True)
+
