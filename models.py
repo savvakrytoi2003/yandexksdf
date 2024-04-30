@@ -1,18 +1,7 @@
-from flask import Flask, render_template
+from V import db
 
-app = Flask(__name__)
-
-@app.route('/')
-def index():
-    return render_template('index.html', title='Главная')
-
-@app.route('/projects')
-def projects():
-    return render_template('projects.html', title='Проекты')
-
-@app.route('/contact')
-def contact():
-    return render_template('contact.html', title='Контакты')
-
-if __name__ == '__main__':
-    app.run(debug=True)
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(50), unique=True, nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    password = db.Column(db.String(100), nullable=False)
